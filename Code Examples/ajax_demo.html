@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Test AJAX page</title>
+  <style>
+    body {
+      line-height: 1.6;
+      font-size: 18px;
+      color: #444;
+      padding: 0 10px;
+      background: #eee;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2
+    }
+
+    .container {
+      position: absolute;
+      top:20px;
+      bottom: 20px;
+      right: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      font-family: Helvetica, Geneva, Tahoma, sans-serif;
+    }
+
+    .wrapper {
+      width: 60%;
+      min-height: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+      flex-direction: column;
+      background: #fefefe;
+      border: 1px dashed #ccc;
+    }
+
+    .wrapper div {
+      border-radius: 14px;
+    }
+
+    .header {
+      margin: 20px 50px;
+      min-height: 75px;
+      background: lightblue;
+      min-width: 80%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.5em;
+      text-transform: capitalize;
+      flex-wrap: nowrap;
+    }
+
+    .content {
+      background: #fff;
+      border: 2px dotted #444;
+      flex-grow: 2;
+      margin: 25px 50px;
+      width: 80%;
+    }
+    
+    .controls {
+      height: 50px;
+      min-width: 80%;
+      background: #999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .button {
+      background-color:#ffc477;
+      -moz-border-radius:11px;
+      -webkit-border-radius:11px;
+      border-radius:11px;
+      border:2px solid #eeb44f;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Verdana;
+      font-size:14px;
+      padding:10px 17px;
+      text-decoration:none;
+      text-shadow:0px 1px 1px #cc9f52;
+    }
+    .button:hover {
+      background-color: coral;
+      border:2px solid rgb(216, 91, 46);
+    }
+    .button:active {
+      position:relative;
+      top:1px;
+    }
+
+    
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">Test AJAX page</div>
+      <button class="button" onclick="loadData()">Load Some JSON</button>
+      <div class="content"></div>
+      <div class="footer"></div>
+    </div>
+  </div>
+  <script>
+  function loadData() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res => res.json())
+    .then(res => res.map(user => user.username))
+    .then(userNames => console.log(userNames));
+  }
+</script>
+</body>
+
+</html>
